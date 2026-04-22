@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="LINKS">
+<title>LINKS – תכנית עבודה</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap');
+
+:root {
+  --green:#2E8B2E; --green-dark:#1e6b1e; --green-light:#e8f5e8; --green-mid:#c8e8c8;
+  --bg:#f4f4f4; --surface:#fff; --text:#1a1a1a; --muted:#777; --border:#e0e0e0;
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { font-family:'Heebo',sans-serif; background:var(--bg); color:var(--text); }
+
+/* ── NAV TABS ── */
+.nav {
+  position:fixed; bottom:0; left:0; right:0; z-index:100;
+  background:#fff; border-top:1px solid var(--border);
+  display:flex;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.nav-btn {
+  flex:1; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; padding:10px 0 8px; gap:3px;
+  background:none; border:none; cursor:pointer;
+  font-family:'Heebo',sans-serif; font-size:11px; color:var(--muted);
+  font-weight:600; letter-spacing:0.5px;
+  transition:color 0.2s;
+}
+.nav-btn.active { color:var(--green); }
+.nav-icon { font-size:20px; line-height:1; }
+
+/* ── PAGES ── */
+.page { display:none; padding-bottom:80px; }
+.page.active { display:block; }
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+.hero {
+  background:var(--green); padding:52px 24px 44px;
+  text-align:center; position:relative; overflow:hidden;
+}
+.hero::after {
+  content:''; position:absolute; bottom:-1px; left:0; right:0;
+  height:36px; background:var(--bg);
+  clip-path:ellipse(55% 100% at 50% 100%);
+}
+.hero-badge {
+  display:inline-block; background:rgba(255,255,255,0.18);
+  border:1px solid rgba(255,255,255,0.35); color:#fff;
+  font-size:10px; font-weight:700; letter-spacing:2px;
+  text-transform:uppercase; padding:5px 16px; border-radius:100px; margin-bottom:16px;
+}
+.hero h1 { font-size:clamp(42px,10vw,72px); font-weight:900; color:#fff; letter-spacing:-2px; line-height:1; margin-bottom:10px; }
+.hero p  { font-size:14px; color:rgba(255,255,255,0.8); max-width:340px; margin:0 auto 28px; }
+.hero-stats { display:flex; justify-content:center; gap:36px; flex-wrap:wrap; }
+.stat-num   { font-size:22px; font-weight:900; color:#fff; }
+.stat-label { font-size:10px; color:rgba(255,255,255,0.65); text-transform:uppercase; letter-spacing:1px; }
+
+/* ══════════════════════════════
+   SHARED SECTION
+══════════════════════════════ */
+.container { max-width:680px; margin:0 auto; padding:32px 16px 0; }
+.section { margin-top:40px; }
+.section-header { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+.section-icon { width:40px; height:40px; border-radius:10px; background:var(--green-light); border:1.5px solid var(--green-mid); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+.section-title { font-size:19px; font-weight:800; }
+.section-sub   { font-size:12px; color:var(--muted); margin-top:2px; }
+.divider { height:1px; background:var(--border); margin:36px 0; }
+
+/* ══════════════════════════════
+   STACK GRID
+══════════════════════════════ */
+.stack-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px; }
+.stack-item { background:var(--surface); border:1.5px solid var(--border); border-radius:12px; padding:14px; }
+.stack-item.hi { border-color:var(--green); background:var(--green-light); }
+.stack-label { font-size:10px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-bottom:4px; }
+.stack-value { font-size:14px; font-weight:800; margin-bottom:3px; }
+.stack-item.hi .stack-value { color:var(--green-dark); }
+.stack-reason { font-size:11px; color:var(--muted); }
+
+/* ══════════════════════════════
+   PHASES
+══════════════════════════════ */
+.phase { background:var(--surface); border:1.5px solid var(--border); border-radius:14px; overflow:hidden; margin-bottom:12px; }
+.phase-header { display:flex; align-items:center; gap:12px; padding:14px 16px; border-bottom:1px solid var(--border); background:var(--green-light); }
+.phase-num { width:30px; height:30px; border-radius:50%; background:var(--green); color:#fff; font-weight:900; font-size:13px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.phase-title { font-size:15px; font-weight:800; color:var(--green-dark); }
+.phase-sub   { font-size:11px; color:var(--muted); margin-top:1px; }
+.phase-weeks { margin-right:auto; font-size:10px; font-weight:700; background:var(--green); color:#fff; border-radius:100px; padding:2px 10px; white-space:nowrap; }
+.phase-body  { padding:16px; }
+.task-list   { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.task-list li { display:flex; align-items:flex-start; gap:8px; font-size:13px; color:#333; }
+.task-list li::before { content:'←'; color:var(--green); font-weight:900; flex-shrink:0; margin-top:1px; }
+.task-list li strong { color:var(--text); }
+
+/* ══════════════════════════════
+   CAN / CANNOT
+══════════════════════════════ */
+.cc-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media(max-width:480px){.cc-grid{grid-template-columns:1fr;}}
+.cc-card { background:var(--surface); border:1.5px solid var(--border); border-radius:12px; padding:16px; }
+.cc-card.yes { border-top:3px solid var(--green); }
+.cc-card.no  { border-top:3px solid #ccc; }
+.cc-title { font-size:12px; font-weight:800; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+.badge-yes{color:var(--green);font-size:15px;} .badge-no{color:#999;font-size:15px;}
+.cc-list { list-style:none; display:flex; flex-direction:column; gap:6px; }
+.cc-list li { font-size:12px; color:var(--muted); padding-right:12px; position:relative; }
+.cc-list li::before { content:'•'; position:absolute; right:0; color:var(--green); }
+.cc-card.no .cc-list li::before { color:#bbb; }
+
+/* ══════════════════════════════
+   TIPS
+══════════════════════════════ */
+.tip-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px; }
+.tip-card { background:var(--surface); border:1.5px solid var(--border); border-radius:12px; padding:14px 16px; }
+.tip-icon  { font-size:22px; margin-bottom:8px; }
+.tip-title { font-size:13px; font-weight:800; margin-bottom:4px; }
+.tip-text  { font-size:12px; color:var(--muted); }
+
+/* ══════════════════════════════
+   FIRST STEPS
+══════════════════════════════ */
+.first-steps { background:var(--green); border-radius:16px; padding:28px; margin-top:40px; color:#fff; }
+.first-steps h2 { font-size:18px; font-weight:900; margin-bottom:20px; }
+.step-row { display:flex; align-items:flex-start; gap:12px; margin-bottom:14px; }
+.step-circle { width:28px; height:28px; border-radius:50%; background:rgba(255,255,255,0.2); border:1.5px solid rgba(255,255,255,0.4); color:#fff; font-weight:900; font-size:13px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+.step-content strong { color:#fff; display:block; font-size:14px; margin-bottom:2px; }
+.step-content span   { font-size:12px; color:rgba(255,255,255,0.75); }
+code { background:rgba(0,0,0,0.25); border-radius:4px; padding:1px 6px; font-family:'Courier New',monospace; font-size:11px; color:#d4f7d4; }
+
+/* ══════════════════════════════
+   CHECKLIST PAGE
+══════════════════════════════ */
+.cl-hero {
+  background:var(--green); padding:48px 24px 40px;
+  text-align:center; position:relative; overflow:hidden;
+}
+.cl-hero::after { content:''; position:absolute; bottom:-1px; left:0; right:0; height:36px; background:var(--bg); clip-path:ellipse(55% 100% at 50% 100%); }
+.cl-hero h1 { font-size:28px; font-weight:900; color:#fff; margin-bottom:6px; }
+.cl-hero p  { font-size:13px; color:rgba(255,255,255,0.75); }
+
+.progress-wrap { max-width:680px; margin:0 auto; padding:24px 16px 0; }
+.progress-top  { display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; }
+.progress-top span { color:var(--green); font-size:14px; }
+.progress-track { height:6px; background:var(--border); border-radius:100px; overflow:hidden; }
+.progress-fill  { height:100%; background:var(--green); border-radius:100px; transition:width 0.4s ease; }
+
+.cl-container { max-width:680px; margin:0 auto; padding:24px 16px 0; }
+
+.cl-phase { margin-bottom:24px; }
+.cl-phase-header { display:flex; align-items:center; gap:10px; margin-bottom:10px; padding-bottom:8px; border-bottom:1.5px solid var(--border); }
+.cl-phase-num { width:28px; height:28px; border-radius:50%; background:var(--green); color:#fff; font-weight:900; font-size:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.cl-phase-num.all-done { background:var(--green-mid); color:var(--green-dark); }
+.cl-phase-title { font-size:15px; font-weight:800; }
+.cl-weeks { margin-right:auto; font-size:10px; font-weight:700; background:var(--green-light); color:var(--green-dark); border:1px solid var(--green-mid); border-radius:100px; padding:2px 10px; }
+
+.cl-task {
+  display:flex; align-items:flex-start; gap:10px;
+  padding:11px 12px; background:var(--surface);
+  border:1.5px solid var(--border); border-radius:10px;
+  margin-bottom:7px; cursor:pointer; transition:all 0.18s;
+  user-select:none; -webkit-user-select:none;
+}
+.cl-task:active { transform:scale(0.98); }
+.cl-task.done { background:#f9f9f9; border-color:var(--border); }
+.cl-task.done .cl-task-title { color:#bbb; text-decoration:line-through; }
+.cl-task.done .cl-task-sub   { color:#ccc; }
+
+.checkbox { width:22px; height:22px; border-radius:6px; border:2px solid var(--border); background:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; transition:all 0.18s; }
+.cl-task.done .checkbox { background:var(--green); border-color:var(--green); }
+.checkbox svg { display:none; }
+.cl-task.done .checkbox svg { display:block; }
+.cl-task-title { font-size:13px; font-weight:700; margin-bottom:2px; transition:color 0.18s; }
+.cl-task-sub   { font-size:11px; color:var(--muted); transition:color 0.18s; }
+
+.complete-msg { display:none; text-align:center; background:var(--green); color:#fff; border-radius:14px; padding:20px; margin:20px 0; font-size:15px; font-weight:700; }
+.complete-msg.show { display:block; }
+
+.reset-btn { display:block; margin:20px auto; background:none; border:1.5px solid var(--border); border-radius:100px; padding:8px 22px; font-family:'Heebo',sans-serif; font-size:11px; color:var(--muted); cursor:pointer; letter-spacing:1px; text-transform:uppercase; transition:all 0.2s; }
+.reset-btn:active { border-color:var(--green); color:var(--green); }
+
+.footer { text-align:center; padding:28px 16px; color:var(--muted); font-size:11px; }
+.footer strong { color:var(--green); }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     PAGE 1 — תכנית עבודה
+════════════════════════════════════════ -->
+<div class="page active" id="page-plan">
+
+  <div class="hero">
+    <div class="hero-badge">תכנית עבודה מקצועית</div>
+    <h1>LINKS</h1>
+    <p>פלטפורמה להתאמה בין מפרסמים לדורשי פרסום</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">4</div><div class="stat-label">שלבים</div></div>
+      <div class="stat"><div class="stat-num">~12</div><div class="stat-label">שבועות</div></div>
+      <div class="stat"><div class="stat-num">React Native</div><div class="stat-label">הטכנולוגיה</div></div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">⚙️</div>
+        <div><div class="section-title">הסטאק הטכנולוגי</div><div class="section-sub">הכלים שנשתמש בהם</div></div>
+      </div>
+      <div class="stack-grid">
+        <div class="stack-item hi"><div class="stack-label">App</div><div class="stack-value">React Native + Expo</div><div class="stack-reason">קוד אחד ← iOS + Android</div></div>
+        <div class="stack-item hi"><div class="stack-label">Backend</div><div class="stack-value">Supabase</div><div class="stack-reason">DB + Auth + Chat — הכל מוכן</div></div>
+        <div class="stack-item"><div class="stack-label">שפה</div><div class="stack-value">TypeScript</div><div class="stack-reason">דומה ל-C# שלמדת</div></div>
+        <div class="stack-item"><div class="stack-label">AI</div><div class="stack-value">Claude API</div><div class="stack-reason">ניתוח מפרסמים + Matching</div></div>
+        <div class="stack-item"><div class="stack-label">תשלומים</div><div class="stack-value">Stripe</div><div class="stack-reason">סטנדרט בתעשייה</div></div>
+        <div class="stack-item"><div class="stack-label">Deploy</div><div class="stack-value">Expo EAS</div><div class="stack-reason">פרסום ל-Store בפקודה אחת</div></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🗓️</div>
+        <div><div class="section-title">4 שלבים</div><div class="section-sub">כל שלב = משהו עובד שאפשר לגעת בו</div></div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-num">1</div>
+          <div><div class="phase-title">בסיס ולמידה</div><div class="phase-sub">הכנת הסביבה + הכלים</div></div>
+          <div class="phase-weeks">שבועות 1–2</div>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li><strong>התקנת סביבת פיתוח:</strong> VS Code, Node.js, Expo CLI, Git</li>
+            <li><strong>התקנת Claude Code:</strong> העוזר שיכתוב קוד במקומך</li>
+            <li><strong>פרויקט ריק + Supabase:</strong> Hello World על הטלפון</li>
+            <li><strong>תיעוד:</strong> מסמך של כל מסכי האפליקציה</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-num">2</div>
+          <div><div class="phase-title">ליבת האפליקציה</div><div class="phase-sub">מה שגורם לה "לעבוד"</div></div>
+          <div class="phase-weeks">שבועות 3–7</div>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li><strong>הרשמה / התחברות:</strong> מפרסם ודורש פרסום</li>
+            <li><strong>פרופיל מפרסם:</strong> רשתות, קהל, נושאים, מחיר</li>
+            <li><strong>פרופיל דורש פרסום:</strong> עסק, קהל יעד, תקציב</li>
+            <li><strong>מסך Matches:</strong> התאמות לפי פרמטרים</li>
+            <li><strong>מסך הודעות:</strong> צ'אט בזמן אמת</li>
+            <li><strong>מסך חיפוש:</strong> פילטרים מתקדמים</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-num">3</div>
+          <div><div class="phase-title">שכבת הייחודיות</div><div class="phase-sub">מה שמבדיל מרשימת קונטקטים</div></div>
+          <div class="phase-weeks">שבועות 8–10</div>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li><strong>Matching חכם:</strong> אלגוריתם ניקוד התאמה</li>
+            <li><strong>AI — ציון אמינות:</strong> Claude מנתח מפרסמים</li>
+            <li><strong>הודעות אוטומטיות:</strong> תבניות לפנייה ראשונה</li>
+            <li><strong>Push Notifications:</strong> Match חדש / הודעה חדשה</li>
+            <li><strong>Stripe — מנוי:</strong> Free vs. Premium</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-num">4</div>
+          <div><div class="phase-title">ליטוש והשקה</div><div class="phase-sub">מוכן לאנשים אמיתיים</div></div>
+          <div class="phase-weeks">שבועות 11–12</div>
+        </div>
+        <div class="phase-body">
+          <ul class="task-list">
+            <li><strong>בדיקות עם משתמשים:</strong> 5–10 מכל קבוצה</li>
+            <li><strong>ליטוש עיצוב:</strong> צבעים, גופנים, אנימציות</li>
+            <li><strong>Analytics:</strong> Mixpanel / PostHog</li>
+            <li><strong>פרסום:</strong> App Store + Google Play</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🤖</div>
+        <div><div class="section-title">Claude Code — מה כן ומה לא</div></div>
+      </div>
+      <div class="cc-grid">
+        <div class="cc-card yes">
+          <div class="cc-title"><span class="badge-yes">✓</span> מה יעשה בשבילך</div>
+          <ul class="cc-list">
+            <li>יכתוב קומפוננטות מאפס</li>
+            <li>יבנה לוגיקת Matching</li>
+            <li>ינפה שגיאות</li>
+            <li>יכתוב שאילתות SQL</li>
+            <li>ידריך צעד אחרי צעד</li>
+          </ul>
+        </div>
+        <div class="cc-card no">
+          <div class="cc-title"><span class="badge-no">✗</span> מה תעשה בעצמך</div>
+          <ul class="cc-list">
+            <li>הרשמה לשירותים</li>
+            <li>בדיקות עם משתמשים</li>
+            <li>החלטות עסקיות</li>
+            <li>שיווק והבאת יוזרים</li>
+            <li>אישור Apple / Google</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">💡</div>
+        <div><div class="section-title">טיפים למתחיל</div></div>
+      </div>
+      <div class="tip-grid">
+        <div class="tip-card"><div class="tip-icon">🎯</div><div class="tip-title">MVP = מינימום</div><div class="tip-text">גרסה ראשונה = Matching + Chat בלבד. שאר הפיצ'רים יבואו אחרי.</div></div>
+        <div class="tip-card"><div class="tip-icon">💬</div><div class="tip-title">דבר בעברית פשוטה</div><div class="tip-text">"תבנה מסך שמראה רשימת מפרסמים" — זה מספיק לClaude Code.</div></div>
+        <div class="tip-card"><div class="tip-icon">🗃️</div><div class="tip-title">Git מהיום הראשון</div><div class="tip-text">תשמור גרסאות. אם משהו נשבר — תחזור אחורה.</div></div>
+        <div class="tip-card"><div class="tip-icon">👥</div><div class="tip-title">10 לקוחות לפני קוד</div><div class="tip-text">שאל 5 עסקים + 5 בעלי עוקבים מה הכי חשוב להם.</div></div>
+        <div class="tip-card"><div class="tip-icon">⚡</div><div class="tip-title">Supabase חוסכת חודשים</div><div class="tip-text">DB + Auth + Chat — הכל מוכן. התמקד באפליקציה.</div></div>
+        <div class="tip-card"><div class="tip-icon">🔁</div><div class="tip-title">Build → Test → Fix</div><div class="tip-text">בדוק כל פיצ'ר קטן מיד. אל תבנה הכל ואז תבדוק.</div></div>
+      </div>
+    </div>
+
+    <div class="first-steps">
+      <h2>🚀 הצעדים הראשונים</h2>
+      <div class="step-row"><div class="step-circle">1</div><div class="step-content"><strong>הורד VS Code + Node.js</strong><span>code.visualstudio.com · nodejs.org — חינמי לגמרי</span></div></div>
+      <div class="step-row"><div class="step-circle">2</div><div class="step-content"><strong>התקן Claude Code</strong><span><code>npm install -g @anthropic-ai/claude-code</code></span></div></div>
+      <div class="step-row"><div class="step-circle">3</div><div class="step-content"><strong>צור פרויקט Expo</strong><span><code>npx create-expo-app links-app</code></span></div></div>
+      <div class="step-row"><div class="step-circle">4</div><div class="step-content"><strong>פתח Claude Code בתיקייה</strong><span>כתוב <code>claude</code> ואמור לו: "בוא נבנה את LINKS"</span></div></div>
+      <div class="step-row"><div class="step-circle">5</div><div class="step-content"><strong>צור חשבון Supabase</strong><span>supabase.com — חינמי לפיתוח</span></div></div>
+    </div>
+
+    <div class="footer"><strong>LINKS</strong> · תכנית עבודה · נבנה עם Claude</div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE 2 — צ'קליסט
+════════════════════════════════════════ -->
+<div class="page" id="page-checklist">
+
+  <div class="cl-hero">
+    <h1>✅ צ'קליסט</h1>
+    <p>סמן כל משימה כשסיימת</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-top"><span>התקדמות</span><span id="prog-text">0 / 28</span></div>
+    <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+
+  <div class="cl-container">
+
+    <!-- PHASE 0 -->
+    <div class="cl-phase">
+      <div class="cl-phase-header">
+        <div class="cl-phase-num" id="pn0">0</div>
+        <div class="cl-phase-title">הכנה ראשונית</div>
+        <div class="cl-weeks">לפני הכל</div>
+      </div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">הורד VS Code</div><div class="cl-task-sub">code.visualstudio.com</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">הורד Node.js</div><div class="cl-task-sub">nodejs.org</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">התקן Claude Code</div><div class="cl-task-sub">npm install -g @anthropic-ai/claude-code</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">צור חשבון Supabase</div><div class="cl-task-sub">supabase.com — חינמי</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">דבר עם 10 לקוחות פוטנציאלים</div><div class="cl-task-sub">5 עסקים + 5 בעלי עוקבים</div></div></div>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div class="cl-phase">
+      <div class="cl-phase-header">
+        <div class="cl-phase-num" id="pn1">1</div>
+        <div class="cl-phase-title">בסיס ולמידה</div>
+        <div class="cl-weeks">שבועות 1–2</div>
+      </div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">צור פרויקט Expo ריק</div><div class="cl-task-sub">ראה Hello World על הטלפון</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">הכר את מבנה הקבצים</div><div class="cl-task-sub">שאל את Claude Code להסביר</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">חבר Supabase לפרויקט</div><div class="cl-task-sub">Claude Code יעשה זאת בפקודה אחת</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">הגדר Git</div><div class="cl-task-sub">שמירת גרסאות — חובה</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">כתוב מסמך מסכים</div><div class="cl-task-sub">רשום מה כל מסך עושה</div></div></div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="cl-phase">
+      <div class="cl-phase-header">
+        <div class="cl-phase-num" id="pn2">2</div>
+        <div class="cl-phase-title">ליבת האפליקציה</div>
+        <div class="cl-weeks">שבועות 3–7</div>
+      </div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">מסך הרשמה והתחברות</div><div class="cl-task-sub">מפרסם ודורש פרסום</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">פרופיל מפרסם</div><div class="cl-task-sub">רשתות, קהל, נושאים, מחיר</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">פרופיל דורש פרסום</div><div class="cl-task-sub">עסק, קהל יעד, תקציב</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">מסך Matches</div><div class="cl-task-sub">הצגת התאמות לפי הפרופיל</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">מסך הודעות — צ'אט</div><div class="cl-task-sub">הודעות בזמן אמת</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">מסך חיפוש ופילטרים</div><div class="cl-task-sub">רשת, קהל, תחום, מחיר</div></div></div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="cl-phase">
+      <div class="cl-phase-header">
+        <div class="cl-phase-num" id="pn3">3</div>
+        <div class="cl-phase-title">שכבת הייחודיות</div>
+        <div class="cl-weeks">שבועות 8–10</div>
+      </div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">אלגוריתם Matching חכם</div><div class="cl-task-sub">ניקוד התאמה מרובה פרמטרים</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">AI — ציון אמינות</div><div class="cl-task-sub">Claude API מנתח מפרסמים</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">הודעות אוטומטיות</div><div class="cl-task-sub">תבניות לפנייה ראשונה</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">Push Notifications</div><div class="cl-task-sub">Match חדש + הודעה חדשה</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">Stripe — מנוי</div><div class="cl-task-sub">Free vs. Premium</div></div></div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="cl-phase">
+      <div class="cl-phase-header">
+        <div class="cl-phase-num" id="pn4">4</div>
+        <div class="cl-phase-title">ליטוש והשקה</div>
+        <div class="cl-weeks">שבועות 11–12</div>
+      </div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">בדיקות עם משתמשים אמיתיים</div><div class="cl-task-sub">5–10 מכל קבוצה</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">ליטוש עיצוב</div><div class="cl-task-sub">צבעים, גופנים, אנימציות</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">אבטחה בסיסית</div><div class="cl-task-sub">הגנת נתונים + ולידציות</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">Analytics</div><div class="cl-task-sub">Mixpanel / PostHog</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">פרסום — App Store + Google Play</div><div class="cl-task-sub">Expo EAS</div></div></div>
+      <div class="cl-task" onclick="toggle(this)"><div class="checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cl-task-title">🚀 השקה!</div><div class="cl-task-sub">100 המשתמשים הראשונים</div></div></div>
+    </div>
+
+    <div class="complete-msg" id="complete-msg">🎉 סיימת הכל! LINKS מוכנה לעולם 🚀</div>
+    <button class="reset-btn" onclick="resetAll()">איפוס הכל</button>
+
+    <div class="footer"><strong>LINKS</strong> · צ'קליסט · נבנה עם Claude</div>
+
+  </div>
+</div>
+
+<!-- ── BOTTOM NAV ── -->
+<nav class="nav">
+  <button class="nav-btn active" id="btn-plan" onclick="showPage('plan')">
+    <span class="nav-icon">📋</span>תכנית עבודה
+  </button>
+  <button class="nav-btn" id="btn-checklist" onclick="showPage('checklist')">
+    <span class="nav-icon">✅</span>צ'קליסט
+  </button>
+</nav>
+
+<script>
+// ── NAVIGATION ──
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.getElementById('btn-' + name).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// ── CHECKLIST ──
+const STORAGE_KEY = 'links-checklist-v1';
+const tasks = document.querySelectorAll('.cl-task');
+const total = tasks.length;
+
+function toggle(el) {
+  el.classList.toggle('done');
+  updateProgress();
+  saveState();
+}
+
+function updateProgress() {
+  const done = document.querySelectorAll('.cl-task.done').length;
+  const pct  = Math.round((done / total) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-text').textContent = done + ' / ' + total;
+  document.getElementById('complete-msg').classList.toggle('show', done === total);
+}
+
+function saveState() {
+  const state = Array.from(tasks).map(t => t.classList.contains('done') ? 1 : 0);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function resetAll() {
+  tasks.forEach(t => t.classList.remove('done'));
+  updateProgress();
+  saveState();
+}
+
+// Restore
+try {
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  saved.forEach((v, i) => { if (v && tasks[i]) tasks[i].classList.add('done'); });
+} catch {}
+updateProgress();
+</script>
+</body>
+</html>
