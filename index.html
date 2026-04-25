@@ -636,7 +636,100 @@ code { background:rgba(0,0,0,0.25); border-radius:4px; padding:1px 6px; font-fam
   <button class="nav-btn" id="btn-vision" onclick="showPage('vision')">
     <span class="nav-icon">💡</span>חזון
   </button>
+  <button class="nav-btn" id="btn-business" onclick="showPage('business')">
+    <span class="nav-icon">💼</span>עסקי
+  </button>
 </nav>
+
+<!-- ════════════════════════════════════════
+     PAGE 4 — תכנית עסקית
+════════════════════════════════════════ -->
+<div class="page" id="page-business">
+
+  <div class="cl-hero">
+    <h1>💼 תכנית עסקית</h1>
+    <p>מסגרת עבודה ראשונית לפרויקט LINKS</p>
+  </div>
+
+  <div class="cl-container">
+
+    <!-- DISCLAIMER -->
+    <div style="background:#fffdf0;border:1.5px solid #f0e0a0;border-radius:12px;padding:16px;margin-bottom:24px;display:flex;gap:12px;align-items:flex-start;">
+      <div style="font-size:20px;flex-shrink:0">📌</div>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#7a5800;margin-bottom:4px">תכנית ראשונית — גרסה 0.1</div>
+        <div style="font-size:12px;color:#8a6a00;line-height:1.6">זוהי מסגרת עבודה ראשונית שנועדה לעזור לך להבין לאן הולכים. היא תתעדכן ותתעמק ככל שהפרויקט יתקדם ותדבר עם לקוחות אמיתיים.</div>
+      </div>
+    </div>
+
+    <!-- SUB NAV -->
+    <div style="display:flex;border-bottom:1.5px solid var(--border);margin-bottom:20px;overflow-x:auto;gap:0">
+      <button onclick="showBizTab('biz-summary',this)" id="bizbtn-summary" style="flex:1;min-width:70px;padding:9px 6px;background:none;border:none;border-bottom:2px solid var(--green);cursor:pointer;font-family:'Heebo',sans-serif;font-size:12px;color:var(--green);font-weight:700;white-space:nowrap">סיכום</button>
+      <button onclick="showBizTab('biz-market',this)" id="bizbtn-market" style="flex:1;min-width:70px;padding:9px 6px;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:'Heebo',sans-serif;font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap">שוק</button>
+      <button onclick="showBizTab('biz-model',this)" id="bizbtn-model" style="flex:1;min-width:70px;padding:9px 6px;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:'Heebo',sans-serif;font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap">מודל</button>
+      <button onclick="showBizTab('biz-go',this)" id="bizbtn-go" style="flex:1;min-width:70px;padding:9px 6px;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:'Heebo',sans-serif;font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap">השקה</button>
+      <button onclick="showBizTab('biz-risks',this)" id="bizbtn-risks" style="flex:1;min-width:70px;padding:9px 6px;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:'Heebo',sans-serif;font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap">סיכונים</button>
+    </div>
+
+    <!-- SUMMARY -->
+    <div id="biz-summary">
+      <div style="background:var(--green-light);border:1.5px solid #b8ddc8;border-radius:12px;padding:16px;margin-bottom:12px">
+        <div style="font-size:12px;font-weight:700;color:var(--green-dark);margin-bottom:4px">הרעיון בשורה אחת</div>
+        <div style="font-size:13px;color:var(--green);line-height:1.6">עסק קטן שרוצה לפרסם + בן אדם עם קהל עוקבים שרוצה להרוויח — LINKS מחברת ביניהם בצורה קלה וחכמה.</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center"><div style="font-size:22px;font-weight:900;color:var(--green)">2</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-top:3px">קהלי יעד</div></div>
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center"><div style="font-size:22px;font-weight:900;color:var(--green)">~12</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-top:3px">שבועות לגרסה 1</div></div>
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center"><div style="font-size:22px;font-weight:900;color:var(--green)">100</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-top:3px">משתמשים ראשונים</div></div>
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center"><div style="font-size:22px;font-weight:900;color:var(--green)">0 ₪</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-top:3px">עלות פיתוח</div></div>
+      </div>
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px"><div style="font-size:13px;font-weight:700;margin-bottom:4px">למה עכשיו?</div><div style="font-size:12px;color:var(--muted);line-height:1.5">שיווק דרך influencers גדל כל שנה. עסקים קטנים עדיין לא מוצאים דרך קלה לעשות את זה — ובישראל אין מתחרה ישיר. זה יתרון ראשון עצום.</div></div>
+    </div>
+
+    <!-- MARKET -->
+    <div id="biz-market" style="display:none">
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-size:13px;font-weight:700">עסקים קטנים-בינוניים</div><div style="background:#fff8e1;color:#7a5800;border:1px solid #f0c070;border-radius:100px;padding:3px 10px;font-size:10px;font-weight:700">משלמים</div></div><div style="font-size:12px;color:var(--muted);line-height:1.5">מסעדות, חנויות, מותגים קטנים — רוצים לפרסם ברשתות אבל אין להם תקציב לסוכנות.</div></div>
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-size:13px;font-weight:700">בעלי קהל עוקבים</div><div style="background:var(--green-light);color:var(--green-dark);border:1px solid #b8ddc8;border-radius:100px;padding:3px 10px;font-size:10px;font-weight:700">חינמי + פרמיום</div></div><div style="font-size:12px;color:var(--muted);line-height:1.5">אנשים עם 1,000+ עוקבים — רוצים להרוויח מהקהל שלהם אבל לא יודעים איך למצוא עסקים.</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px">
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center"><div style="font-size:20px;font-weight:900;color:var(--green)">500K+</div><div style="font-size:10px;color:var(--muted);margin-top:3px">עסקים קטנים בישראל</div></div>
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center"><div style="font-size:20px;font-weight:900;color:var(--green)">200K+</div><div style="font-size:10px;color:var(--muted);margin-top:3px">בעלי עוקבים בישראל</div></div>
+      </div>
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px"><div style="font-size:13px;font-weight:700;margin-bottom:4px">המתחרה האמיתי</div><div style="font-size:12px;color:var(--muted);line-height:1.5">לא חברה — אלא כאוס. DM אקראיים, המלצות מפה לאוזן, מזל. זה מה שאנחנו מחליפים.</div></div>
+    </div>
+
+    <!-- MODEL -->
+    <div id="biz-model" style="display:none">
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px"><div style="font-size:13px;font-weight:700;margin-bottom:4px">עסקים — מנוי חודשי</div><div style="font-size:12px;color:var(--muted);line-height:1.5">ניסיון חינמי של חודש → אחר כך ~100-200 ₪ לחודש. תמורת גישה לכל בעלי העוקבים ומערכת ניהול.</div></div>
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px"><div style="font-size:13px;font-weight:700;margin-bottom:4px">מפרסמים — Freemium</div><div style="font-size:12px;color:var(--muted);line-height:1.5">חינמי תמיד. מי שרוצה חשיפה גבוהה יותר — ~30-50 ₪ לחודש לפרמיום.</div></div>
+      <div style="height:1px;background:var(--border);margin:16px 0"></div>
+      <div style="font-size:13px;font-weight:700;margin-bottom:10px">מסלול צמיחה</div>
+      <div style="display:flex;gap:12px;margin-bottom:12px;position:relative"><div style="width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">1</div><div><div style="font-size:13px;font-weight:700">0-3 חודשים — הוכחת רעיון</div><div style="font-size:12px;color:var(--muted);margin-top:3px">100 משתמשים, חינמי לכולם.</div></div></div>
+      <div style="display:flex;gap:12px;margin-bottom:12px"><div style="width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">2</div><div><div style="font-size:13px;font-weight:700">3-6 חודשים — מונטיזציה</div><div style="font-size:12px;color:var(--muted);margin-top:3px">50 עסקים משלמים = ~7,500 ₪/חודש.</div></div></div>
+      <div style="display:flex;gap:12px;margin-bottom:12px"><div style="width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">3</div><div><div style="font-size:13px;font-weight:700">6-12 חודשים — גדילה</div><div style="font-size:12px;color:var(--muted);margin-top:3px">200 עסקים. יעד: 30,000 ₪/חודש.</div></div></div>
+    </div>
+
+    <!-- GO TO MARKET -->
+    <div id="biz-go" style="display:none">
+      <div style="background:var(--green-light);border:1.5px solid #b8ddc8;border-radius:12px;padding:14px;margin-bottom:12px"><div style="font-size:12px;font-weight:700;color:var(--green-dark);margin-bottom:4px">הכלל הכי חשוב</div><div style="font-size:12px;color:var(--green);line-height:1.6">כל startup גדול התחיל עם גיוס ידני — Airbnb, Uber, Tinder. לא מפרסמים. הולכים לאנשים.</div></div>
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px"><div style="font-size:13px;font-weight:700;margin-bottom:4px">50 עסקים ראשונים</div><div style="font-size:12px;color:var(--muted);line-height:1.5">לכת לשכונה — מסעדות, חנויות, קוסמטיקה. לדבר עם הבעלים פנים אל פנים. לא לשלוח מייל.</div></div>
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px"><div style="font-size:13px;font-weight:700;margin-bottom:4px">50 מפרסמים ראשונים</div><div style="font-size:12px;color:var(--muted);line-height:1.5">מהמעגל הקרוב + קבוצות פייסבוק ווואטסאפ של יוצרי תוכן ישראלים.</div></div>
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px"><div style="font-size:13px;font-weight:700;margin-bottom:8px">מה אומרים?</div><div style="font-size:12px;color:var(--muted);margin-bottom:6px;line-height:1.5"><strong>לעסקים:</strong> "נחבר אותך עם מפרסמים שמתאימים בדיוק לעסק שלך — בלי חיפוש, בלי DMs אקראיים."</div><div style="font-size:12px;color:var(--muted);line-height:1.5"><strong>למפרסמים:</strong> "קבל הצעות שיתוף פעולה מעסקים שמתאימים לקהל שלך — בלי שתחפש."</div></div>
+    </div>
+
+    <!-- RISKS -->
+    <div id="biz-risks" style="display:none">
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px;display:flex;gap:10px"><div style="font-size:16px;flex-shrink:0">⚠️</div><div><div style="font-size:13px;font-weight:700;margin-bottom:3px">בעיית הביצה והתרנגולת</div><div style="font-size:12px;color:var(--muted);line-height:1.5">עסקים רוצים מפרסמים, מפרסמים רוצים עסקים. פתרון: לגייס את שניהם במקביל.</div></div></div>
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px;display:flex;gap:10px"><div style="font-size:16px;flex-shrink:0">⚠️</div><div><div style="font-size:13px;font-weight:700;margin-bottom:3px">מה אם לא ישלמו?</div><div style="font-size:12px;color:var(--muted);line-height:1.5">פתרון: ניסיון חינמי ארוך, מחיר נמוך בהתחלה, להוכיח ערך לפני שגובים.</div></div></div>
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px;display:flex;gap:10px"><div style="font-size:16px;flex-shrink:0">⚠️</div><div><div style="font-size:13px;font-weight:700;margin-bottom:3px">מתחרה גדול ייכנס לשוק</div><div style="font-size:12px;color:var(--muted);line-height:1.5">פתרון: להיות ראשון בישראל, לבנות קהילה נאמנה מהר.</div></div></div>
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px;display:flex;gap:10px"><div style="font-size:16px;flex-shrink:0">⚠️</div><div><div style="font-size:13px;font-weight:700;margin-bottom:3px">אנשים לא ישתמשו בה</div><div style="font-size:12px;color:var(--muted);line-height:1.5">הסיכון הכי גדול. פתרון: לדבר עם 10 לקוחות לפני שכותבים שורת קוד.</div></div></div>
+      <div style="background:var(--green-light);border:1.5px solid #b8ddc8;border-radius:12px;padding:14px;margin-top:16px"><div style="font-size:12px;font-weight:700;color:var(--green-dark);margin-bottom:4px">הדבר הכי חשוב עכשיו</div><div style="font-size:12px;color:var(--green);line-height:1.6">דבר עם 5 עסקים ו-5 בעלי עוקבים. שאל: "האם תשתמש בשירות כזה?" התשובות שלהם שוות יותר מכל קוד.</div></div>
+    </div>
+
+  </div>
+
+  <div class="footer"><strong>LINKS</strong> · תכנית עסקית · נבנה עם Claude</div>
+
+</div>
 
 <script>
 // ── NAVIGATION ──
@@ -646,6 +739,20 @@ function showPage(name) {
   document.getElementById('page-' + name).classList.add('active');
   document.getElementById('btn-' + name).classList.add('active');
   window.scrollTo(0,0);
+}
+
+// ── BUSINESS PLAN TABS ──
+function showBizTab(name, btn) {
+  document.querySelectorAll('#page-business [id^="biz-"]').forEach(p => p.style.display = 'none');
+  document.getElementById(name).style.display = 'block';
+  document.querySelectorAll('#page-business button').forEach(b => {
+    b.style.color = 'var(--muted)';
+    b.style.borderBottomColor = 'transparent';
+    b.style.fontWeight = '600';
+  });
+  btn.style.color = 'var(--green)';
+  btn.style.borderBottomColor = 'var(--green)';
+  btn.style.fontWeight = '700';
 }
 
 // ── CHECKLIST ──
