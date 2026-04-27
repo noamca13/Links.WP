@@ -7,6 +7,29 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="LINKS">
 <title>LINKS – תכנית עבודה</title>
+  <script>
+(function(){
+  try{
+    var c=document.createElement('canvas');
+    c.width=180;c.height=180;
+    var ctx=c.getContext('2d');
+    ctx.fillStyle='#1a1a1a';
+    ctx.beginPath();ctx.rect(0,0,180,180);ctx.fill();
+    ctx.fillStyle='#2e8b3e';
+    ctx.font='800 42px "Arial Black", sans-serif';
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+    ctx.fillText('LINKS.',90,82);
+    ctx.font='500 12px Arial, sans-serif';
+    ctx.letterSpacing='1px';
+    ctx.fillText('Working Program',90,115);
+    var link=document.createElement('link');
+    link.rel='apple-touch-icon';
+    link.href=c.toDataURL('image/png');
+    document.head.appendChild(link);
+  }catch(e){}
+})();
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Heebo:wght@300;400;500;700;900&display=swap');
 
